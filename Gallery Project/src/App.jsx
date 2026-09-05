@@ -8,7 +8,7 @@ const App = () => {
   const [index, setIndex] = useState(1)
 
   const getData = async () => {
-    const response = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=20`)
+    const response = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=10`)
 
     setUserData(response.data)
 
@@ -24,14 +24,14 @@ const App = () => {
     printUserData = userData.map(function (elem, idx) {
 
       return <div key={idx}>
-       <a href={elem.url} target='_blank'>
-         <div className='h-55 w-60 overflow-hidden rounded-xl'>
-          <img className='object-cover bg-center h-full w-full'
-            src={elem.download_url} alt="" />
-        </div>
-        <h2 className='font-bold text-lg'>{elem.author}</h2>
+        <a href={elem.url} target='_blank'>
+          <div className='h-44 w-48 overflow-hidden rounded-xl'>
+            <img className='object-cover bg-center h-full w-full'
+              src={elem.download_url} alt="" />
+          </div>
+          <h2 className='font-bold text-s p-1'>{elem.author}</h2>
 
-       </a>
+        </a>
       </div>
     })
   }
@@ -39,14 +39,14 @@ const App = () => {
   return (
     <div className='bg-black h-screen overflow-auto p-4 text-white'>
 
-      <div className=' flex flex-wrap gap-5 p-2'>
+      <div className='min-h-[90%] flex flex-wrap gap-5 p-2'>
         {printUserData}
       </div>
 
       <div className='flex items-center justify-center gap-5 mt-3  '>
-        <button 
-        style={{opacity: index == 1? 0.5 : 1}}
-        className='bg-amber-400 px-4 py-1 rounded font-semibold cursor-pointer active:scale-95 text-black'
+        <button
+          style={{ opacity: index == 1 ? 0.5 : 1, transform: index === 1 ? 'scale(1)' : 'scale(0.95)' }}
+          className='bg-amber-400 px-4 py-1 rounded font-semibold cursor-pointer active:scale-95 text-black'
           onClick={
             () => {
               if (index > 1) {
@@ -55,9 +55,10 @@ const App = () => {
               }
             }
           }
-        >prev</button>
+        ><u>prev</u>
+        </button>
 
-        <h4>Page {index}</h4>
+        <h4 className='text-s font-semibold'>Page {index}</h4>
 
         <button className='bg-amber-400 px-4 py-1 rounded font-semibold cursor-pointer active:scale-95 text-black'
           onClick={
@@ -66,7 +67,8 @@ const App = () => {
               setIndex(index + 1)
             }
           }
-        >next</button>
+        ><u> next </u>
+        </button>
       </div >
     </div >
   )
