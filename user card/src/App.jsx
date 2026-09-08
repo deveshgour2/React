@@ -2,14 +2,14 @@ import { useState } from "react"
 
 const App = () => {
 
-  useState
+
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [image, setImage] = useState('')
   const [role, setRole] = useState('')
-  
+
   const localData = JSON.parse(localStorage.getItem('all-Users')) || []
- 
+
   const [allUser, setAllUser] = useState(localData)
 
   const submitHandler = (e) => {
@@ -28,13 +28,13 @@ const App = () => {
 
   const deleteHandler = (idx) => {
     const copyUsers = [...allUser]
-  
+
     const conf = confirm('Are you really want to Delete this element')
 
-    if(conf){
-        copyUsers.splice(idx, 1)
+    if (conf) {
+      copyUsers.splice(idx, 1)
     }
-    else{
+    else {
       alert('element not Deleted')
     }
 
@@ -94,7 +94,7 @@ const App = () => {
         <button className="bg-green-500 w-[98%] px-5 py-3 rounded text-lg font-semibold active:scale-95">Create User</button>
       </form>
 
-      <div className="flex flex-wrap f-full">
+      <div className="flex flex-wrap h-full">
 
         {allUser.map(function (elem, idx) {
           return <div key={idx}>
